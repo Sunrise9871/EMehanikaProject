@@ -6,6 +6,7 @@ namespace Level.SpawnableObjects
     public class StickySphere : SpawnableObject
     {
         private const float ShakeDuration = 0.5f;
+        private const float ShakeStrength = 1f;
 
         private void OnTriggerStay2D(Collider2D enteredCollider)
         {
@@ -30,7 +31,7 @@ namespace Level.SpawnableObjects
         {
             var originalPosition = transform.localPosition;
 
-            transform.DOShakePosition(ShakeDuration)
+            transform.DOShakePosition(ShakeDuration, new Vector3(ShakeStrength, ShakeStrength, 0))
                 .SetLink(gameObject)
                 .OnKill(() => transform.localPosition = originalPosition);
         }
